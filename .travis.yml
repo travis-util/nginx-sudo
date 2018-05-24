@@ -14,4 +14,5 @@ script:
 
 after_script:
 - man nginx
+- dpkg --listfiles nginx
 - ls -A --color /var/www
