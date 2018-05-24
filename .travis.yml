@@ -8,11 +8,10 @@ before_install:
 
 
 script:
-- service apache2 status
+- service nginx status
 - links -dump http://localhost:80
 
 
 after_script:
+- man nginx
 - ls -A --color /var/www
-- ls -d --color /var/www/html
-- ls --color /var/www/html
