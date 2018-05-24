@@ -15,4 +15,6 @@ script:
 after_script:
 - man nginx
 - dpkg --listfiles nginx
+- dpkg --listfiles nginx-common
+- dpkg --listfiles nginx-core
 - ls -A --color /var/www
