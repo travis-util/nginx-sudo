@@ -1,0 +1,18 @@
+sudo: true
+
+
+before_install:
+- sudo aptitude update -Z
+- sudo aptitude install nginx -Z --assume-yes
+- sudo aptitude install links -Z --assume-yes
+
+
+script:
+- service apache2 status
+- links -dump http://localhost:80
+
+
+after_script:
+- ls -A --color /var/www
+- ls -d --color /var/www/html
+- ls --color /var/www/html
