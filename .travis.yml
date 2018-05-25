@@ -1,5 +1,7 @@
 sudo: true
 
+env:
+- PS_FORMAT=user,pid,ppid,nlwp,%mem,args
 
 before_install:
 - sudo aptitude update -Z
@@ -10,6 +12,7 @@ before_install:
 script:
 - service nginx status
 - links -dump http://localhost:80
+- w3m -dump http://localhost:80
 
 
 after_script:
@@ -23,5 +26,8 @@ after_script:
 - cat /etc/default/nginx
 - ls --color /usr/share/nginx/html
 - links -dump /usr/share/nginx/html/index.html
+- w3m -dump /usr/share/nginx/html/index.html
 - links -dump /usr/share/nginx/html/50x.html
+- w3m -dump /usr/share/nginx/html/50x.html
+- ps -C nginx
 - ls -A --color /var/www
