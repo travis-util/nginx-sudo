@@ -23,6 +23,6 @@ after_script:
 - cat /etc/nginx/sites-available/default
 - cat /etc/default/nginx
 - ls --color /usr/share/nginx/html
-- links /usr/share/nginx/html/index.html
-- links /usr/share/nginx/html/50x.html
+- links -dump /usr/share/nginx/html/index.html
+- links -dump /usr/share/nginx/html/50x.html
 - ls -A --color /var/www
