@@ -17,4 +17,12 @@ after_script:
 - dpkg --listfiles nginx
 - dpkg --listfiles nginx-common
 - dpkg --listfiles nginx-core
+- ls --color /etc/nginx
+- cat /etc/nginx/sites-enabled
+- cat /etc/nginx/nginx.conf
+- cat /etc/nginx/sites-available/default
+- cat /etc/default/nginx
+- ls --color /usr/share/nginx/html
+- links /usr/share/nginx/html/index.html
+- links /usr/share/nginx/html/50x.html
 - ls -A --color /var/www
