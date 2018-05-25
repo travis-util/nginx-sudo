@@ -4,7 +4,7 @@ sudo: true
 before_install:
 - sudo aptitude update -Z
 - sudo aptitude install nginx -Z --assume-yes
-- sudo aptitude install links -Z --assume-yes
+- sudo aptitude install links -Z --assume-yes # Consider that w3m could be already available on Travis by default!
 
 
 script:
