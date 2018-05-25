@@ -6,12 +6,10 @@ env:
 before_install:
 - sudo aptitude update -Z
 - sudo aptitude install nginx -Z --assume-yes
-- sudo aptitude install links -Z --assume-yes # Consider that w3m could be already available on Travis by default!
 
 
 script:
 - service nginx status
-- links -dump http://localhost:80
 - w3m -dump http://localhost:80
 
 
@@ -25,9 +23,7 @@ after_script:
 - cat /etc/nginx/sites-available/default
 - cat /etc/default/nginx
 - ls --color /usr/share/nginx/html
-- links -dump /usr/share/nginx/html/index.html
 - w3m -dump /usr/share/nginx/html/index.html
-- links -dump /usr/share/nginx/html/50x.html
 - w3m -dump /usr/share/nginx/html/50x.html
 - ps -C nginx
 - ls -A --color /var/www
