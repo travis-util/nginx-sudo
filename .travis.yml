@@ -24,6 +24,7 @@ after_script:
 - ls --color --recursive /etc/nginx
 - cat /etc/nginx/nginx.conf
 - cat /etc/nginx/sites-available/default
+- grep 'server_name.*;$' /etc/nginx/sites-available/*
 - cat /etc/default/nginx
 - ls --color /usr/share/nginx/html
 - w3m -dump /usr/share/nginx/html/index.html
