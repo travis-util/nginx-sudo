@@ -11,6 +11,8 @@ before_install:
 script:
 - service nginx status
 - w3m -dump http://localhost:80
+- curl http://icanhazip.com
+- w3m -dump http://$(curl http://icanhazip.com):80
 
 
 after_script:
