@@ -10,9 +10,10 @@ before_install:
 
 script:
 - service nginx status
-- w3m -dump http://localhost:80
+- w3m -dump http://localhost
+- curl --connect-timeout 1 http://localhost | w3m -dump -T text/html
 - curl http://icanhazip.com
-- w3m -dump http://$(curl http://icanhazip.com):80
+- curl --connect-timeout 1 http://$(curl http://icanhazip.com) | w3m -dump -T text/html
 
 
 after_script:
