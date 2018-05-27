@@ -6,16 +6,18 @@ env:
 before_install:
 - sudo aptitude update -Z
 - sudo aptitude install nginx -Z --assume-yes
+- curlw () {curl --connect-timeout 1 $@ | w3m -dump -T text/html}
+- ping1 () {ping -c 1 $@}
+- ipeth0=$(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head --lines=1)
 
 
 script:
 - service nginx status
-# - w3m -dump http://localhost
-- curl --connect-timeout 1 http://localhost | w3m -dump -T text/html
-# - curl http://icanhazip.com
-# - curl --connect-timeout 1 http://$(curl http://icanhazip.com) | w3m -dump -T text/html
-- ping -c 1 $(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head --lines=1)
-- curl --connect-timeout 1 http://$(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head --lines=1) | w3m -dump -T text/html
+- curlw http://localhost
+- ping -c 1 $(curl http://icanhazip.com)
+- curlw http://$(curl http://icanhazip.com)
+- ping1 $ipeth0
+- curlw $ipeth0
 
 
 after_script:
