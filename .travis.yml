@@ -6,8 +6,8 @@ env:
 before_install:
 - sudo aptitude update -Z
 - sudo aptitude install nginx -Z --assume-yes
-- curlw () { curl --connect-timeout 1 $@ | w3m -dump -T text/html }
-- ping1 () { ping -c 1 $@ }
+- curlw () { curl --connect-timeout 1 $@ | w3m -dump -T text/html ; }
+- ping1 () { ping -c 1 $@ ; }
 - ipeth0=$(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head --lines=1)
 
 
