@@ -8,16 +8,13 @@ before_install:
 - sudo aptitude install nginx -Z --assume-yes
 - curlw () { curl --connect-timeout 3 $@ | w3m -dump -T text/html ; }
 - ping1 () { ping -c 1 $@ ; }
+- icanh=$(curl http://icanhazip.com)
 - ipeth0=$(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head --lines=1)
 
 
 script:
 - service nginx status
 - curlw http://localhost
-- ping1 $(curl http://icanhazip.com)
-- curlw http://$(curl http://icanhazip.com)
-- ping1 $ipeth0
-- curlw $ipeth0
 
 
 after_script:
@@ -35,3 +32,7 @@ after_script:
 - w3m -dump /usr/share/nginx/html/50x.html
 - ps -C nginx
 - ls -A --color /var/www
+- ping1 $icanh
+- curlw $icanh
+- ping1 $ipeth0
+- curlw $ipeth0
