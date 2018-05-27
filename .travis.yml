@@ -20,6 +20,7 @@ script:
 
 after_script:
 - man nginx
+- nginx -V
 - dpkg --listfiles nginx
 - dpkg --listfiles nginx-common
 - dpkg --listfiles nginx-core
