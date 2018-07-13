@@ -12,6 +12,9 @@ before_install:
 - icanh=$(curl http://icanhazip.com)
 - ipeth0=$(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head --lines=1)
 
+install:
+- pip install --user pygments
+- alias pygmentize="pygmentize -O full"
 
 script:
 - service nginx status
@@ -25,8 +28,8 @@ after_script:
 - dpkg --listfiles nginx-common
 - dpkg --listfiles nginx-core
 - ls --color --recursive /etc/nginx
-- cat /etc/nginx/nginx.conf
-- cat /etc/nginx/sites-available/default
+- pygmentize /etc/nginx/nginx.conf
+- pygmentize -l nginx /etc/nginx/sites-available/default
 - grep 'server_name.*;$' /etc/nginx/sites-available/*
 - cat /etc/default/nginx
 - ls --color /usr/share/nginx/html
